@@ -1,0 +1,6 @@
+{
+  "name": "sonmat",
+  "version": "0.2.0",
+  "description": "손맛 — 범용 자율 루프 플러그인. System 1/2 이중 프로세스 아키텍처 for Codex CLI.",
+  "skills": "./skills/"
+}
