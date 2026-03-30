@@ -22,6 +22,18 @@ sonmat is a Codex-oriented discipline layer for autonomous loops:
 
 처음 링크를 받은 사람이 바로 따라할 수 있는 최소 절차입니다.
 
+### One-command bootstrap (recommended)
+
+```bash
+bash scripts/bootstrap.sh
+```
+
+이 스크립트는 아래를 자동으로 처리합니다.
+- `~/.codex/config.toml` 기본값 보강(기존 값은 가능한 보존)
+- `~/.agents/plugins/marketplace.json`에 `sonmat` 엔트리 upsert
+- `~/.codex/skills`에 `loop/guard/plan/benchmark` fallback 설치
+- `codex exec` 기반 설치 검증 시도
+
 ### 0) Run Codex from project root
 
 예: `~/work/my-project`에서 `codex` 실행.
