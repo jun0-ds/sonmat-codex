@@ -7,22 +7,34 @@
 
 ## 설치
 
-플러그인 디렉토리에 복사:
+아래는 현재 Codex CLI 기준으로 가장 안정적인 설치 절차입니다.
 
-```bash
-# 개인 설치
-cp -R sonmat-codex ~/.codex/plugins/sonmat
+### 1) Codex 메인 가이드 파일(권장)
 
-# marketplace.json에 등록
+Codex는 `CLAUDE.md` 대신 `AGENTS.md`를 가이드 파일로 사용합니다.
+작업 루트(예: `~/.claude`)에 `AGENTS.md`를 두고 팀 규칙을 관리하세요.
+
+### 2) Codex 실행 설정
+
+`~/.codex/config.toml`:
+
+```toml
+approval_policy = "never"
+sandbox_mode = "workspace-write"
+
+[sandbox_workspace_write]
+network_access = true
 ```
 
-또는 `~/.agents/plugins/marketplace.json`에 추가:
+### 3) sonmat 마켓플레이스 등록
+
+`~/.agents/plugins/marketplace.json`:
 
 ```json
 {
-  "name": "sonmat-marketplace",
+  "name": "jun0-marketplace",
   "interface": {
-    "displayName": "sonmat"
+    "displayName": "jun0 plugins"
   },
   "plugins": [
     {
@@ -31,10 +43,25 @@ cp -R sonmat-codex ~/.codex/plugins/sonmat
         "source": "github",
         "repo": "jun0-ds/sonmat-codex"
       },
-      "category": "workflow"
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
     }
   ]
 }
+```
+
+### 4) 리로드/확인
+
+- Codex를 완전히 재시작
+- `/plugins` 또는 `/skills`에서 `sonmat` 확인
+
+안 보이면 캐시를 지우고 다시 시작:
+
+```bash
+rm -rf ~/.codex/.tmp/plugins
 ```
 
 ## 특징
