@@ -78,6 +78,32 @@ Create `~/.agents/plugins/marketplace.json`:
 rm -rf ~/.codex/.tmp/plugins
 ```
 
+## Windows Guide (WSL2 Recommended)
+
+Windows에서는 **WSL2(Ubuntu)** 안에서 Codex를 실행하는 것을 권장합니다.
+
+### Why WSL2?
+
+- 문서의 `~/.codex`, `~/.agents` 경로를 그대로 사용할 수 있음
+- Linux 명령(`rm`, `mkdir`, `cat`)을 그대로 사용 가능
+- 경로/권한 이슈가 Windows 네이티브 실행보다 적음
+
+### Steps on Windows
+
+1. WSL2 Ubuntu에서 Codex를 설치/실행한다.
+2. 아래 Linux 경로 기준으로 동일하게 설정한다.
+   - `~/.codex/config.toml`
+   - `~/.agents/plugins/marketplace.json`
+3. 프로젝트도 WSL 경로(예: `~/work/my-project`)에서 열고 `codex`를 실행한다.
+
+### If you must run on Windows native
+
+- 홈 경로를 `%USERPROFILE%` 기준으로 매핑해야 한다.
+- 경로 예시:
+  - `%USERPROFILE%\\.codex\\config.toml`
+  - `%USERPROFILE%\\.agents\\plugins\\marketplace.json`
+- 다만 플러그인/경로 호환성 문제를 줄이려면 WSL2 실행이 더 안전하다.
+
 ## AGENTS.md Note
 
 Codex의 기본 가이드 파일은 `CLAUDE.md`가 아니라 `AGENTS.md`입니다.
