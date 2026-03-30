@@ -1,22 +1,35 @@
 # sonmat (손맛) for Codex CLI
 
 > 엄마가 하면 맛있던데 왜 내가 하면...?
+>
+> Your AI is confident. Your AI can still be wrong.
 
 범용 자율 루프 플러그인 for Codex CLI.
 [Claude Code 버전](https://github.com/jun0-ds/sonmat)의 Codex CLI 포팅.
 
-## 설치
+## What This Is
 
-아래는 현재 Codex CLI 기준으로 가장 안정적인 설치 절차입니다.
+sonmat is a Codex-oriented discipline layer for autonomous loops:
 
-### 1) Codex 메인 가이드 파일(권장)
+- `loop` — plan -> execute -> evaluate -> judge -> repeat/exit
+- `guard` — pre-commit and scope guardrails
+- `plan` — milestone/phase/task progression
+- `benchmark` — compare strategies quantitatively
 
-Codex는 `CLAUDE.md` 대신 `AGENTS.md`를 가이드 파일로 사용합니다.
-작업 루트(예: `~/.claude`)에 `AGENTS.md`를 두고 팀 규칙을 관리하세요.
+핵심은 "확신할수록 검증"입니다.
 
-### 2) Codex 실행 설정
+## Quick Start (No Claude Setup)
 
-`~/.codex/config.toml`:
+처음 링크를 받은 사람이 바로 따라할 수 있는 최소 절차입니다.
+
+### 0) Run Codex from project root
+
+예: `~/work/my-project`에서 `codex` 실행.
+(전역 설정은 홈 경로에, 실행은 프로젝트 루트에서)
+
+### 1) Configure Codex runtime
+
+Create `~/.codex/config.toml`:
 
 ```toml
 approval_policy = "never"
@@ -26,9 +39,9 @@ sandbox_mode = "workspace-write"
 network_access = true
 ```
 
-### 3) sonmat 마켓플레이스 등록
+### 2) Register marketplace
 
-`~/.agents/plugins/marketplace.json`:
+Create `~/.agents/plugins/marketplace.json`:
 
 ```json
 {
@@ -53,16 +66,22 @@ network_access = true
 }
 ```
 
-### 4) 리로드/확인
+### 3) Reload and verify
 
 - Codex를 완전히 재시작
 - `/plugins` 또는 `/skills`에서 `sonmat` 확인
+- 빠른 확인: `codex exec --skip-git-repo-check -C "$PWD" "List installed skills named loop, guard, plan, benchmark"`
 
 안 보이면 캐시를 지우고 다시 시작:
 
 ```bash
 rm -rf ~/.codex/.tmp/plugins
 ```
+
+## AGENTS.md Note
+
+Codex의 기본 가이드 파일은 `CLAUDE.md`가 아니라 `AGENTS.md`입니다.
+팀 공통 규율은 `AGENTS.md`에 두고, 코어 규율은 영어로 작성하는 것을 권장합니다.
 
 ## 특징
 
